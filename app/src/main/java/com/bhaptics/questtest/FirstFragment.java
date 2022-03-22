@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,6 +57,7 @@ public class FirstFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Toast.makeText(getActivity(), "child", Toast.LENGTH_SHORT).show();
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
@@ -64,7 +66,7 @@ public class FirstFragment extends Fragment {
                     data.getParcelableExtra(CompanionDeviceManager.EXTRA_DEVICE);
             if (deviceToPair != null) {
 
-//                deviceToPair.createBond();
+                deviceToPair.createBond();
                 // Continue to interact with the paired device.
             }
         } else {
@@ -76,7 +78,7 @@ public class FirstFragment extends Fragment {
     private void setupExample() {
         BluetoothDeviceFilter deviceFilter = new BluetoothDeviceFilter.Builder()
                 // Match only Bluetooth devices whose name matches the pattern.
-//                .setNamePattern(Pattern.compile("Tact"))
+                    .setNamePattern(Pattern.compile("Tact"))
 //                // Match only Bluetooth devices whose service UUID matches this pattern.
 //                .addServiceUuid(new ParcelUuid(new UUID(0x123abcL, -1L)), null)
                 .build();
